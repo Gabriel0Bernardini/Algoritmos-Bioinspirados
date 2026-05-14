@@ -1,0 +1,10 @@
+grid_search:
+  enabled: true
+  POP_SIZE: [50, 100]
+  GENERATIONS: [100]
+  MUTATION_RATE: [0.01, 0.05]
+  CROSSOVER_OPERATOR: ["OX", "PMX"]
+  CROSSOVER_RATE: [0.8, 0.9]
+
+basic:
+  iterations: 10

@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------------
+# Autores: Felipe Girardi Siqueira, Lucas Daniel Lana Maciel, Gabriel Vaz Bernardini
+# Algoritmo Genético para o problema da Mochila Binária (instância p01)
+# -----------------------------------------------------------------------------------
+
 import random
 import math
 import matplotlib.pyplot as plt
@@ -32,7 +37,6 @@ def funcao_objetivo(x1, x2):
     return (x1 - 10) ** 3 + (x2 - 20) ** 3
 
 
-# Restrições do G6 no formato g(x) <= 0
 def g1(x1, x2):
     return 100 - (x1 - 5) ** 2 - (x2 - 5) ** 2
 
@@ -50,13 +54,6 @@ def eh_viavel(x1, x2):
 
 
 def eh_melhor(pos_a, pos_b):
-    """
-    Retorna True se pos_a é melhor que pos_b.
-    Critério:
-    1. Viável vence inviável.
-    2. Se ambas viáveis, vence menor f(x).
-    3. Se ambas inviáveis, vence menor violação.
-    """
     x1a, x2a = pos_a
     x1b, x2b = pos_b
 
@@ -86,10 +83,6 @@ def limitar_velocidade(vel):
 
 
 def gerar_posicao_viavel():
-    """
-    Gera uma posição viável por rejeição.
-    O G6 tem região viável estreita, então não é bom deixar a população nascer aleatória demais.
-    """
     while True:
         x1 = random.uniform(X1_MIN, X1_MAX)
         x2 = random.uniform(X2_MIN, X2_MAX)
@@ -137,8 +130,6 @@ def atualizar_particula(particula, gbest):
 
     limitar_posicao(nova_pos)
 
-    # Só aceita movimento se ele não piorar muito a viabilidade.
-    # Isso evita colapso em (13, 0).
     if eh_melhor(nova_pos, particula.pos) or random.random() < 0.05:
         particula.pos = nova_pos
 
